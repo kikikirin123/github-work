@@ -1,0 +1,25 @@
+# python version number
+FROM python:3.9.16
+
+# code directory for python code
+WORKDIR /code
+
+# COPY <src> <dest>　の記述でローカルファイルをコンテナ内にコピー
+# 注意点：srcはdocker build時に実行するディレクトリを基準に解釈される
+
+# Flaskアプリケーションコードの実行
+COPY ./code . 
+
+# pythonライブラリのインポート情報もコンテナ内にコピー
+COPY ./requirements.txt .
+
+# dockerの中でpythonのライブラリをアップロード
+RUN pip install --upgrade pip -r requirements.txt
+
+# アクセスポートの指定（デフォルト5000）
+# 実際にはドキュメンテーションの意味が強く、実際にはコンテナが起動するアプリケーション内でポートの指定をする
+EXPOSE 8999
+
+# アプリケーション実行時のコマンド実行
+# ターミナルで python app.py で起動するのと同じ感じ
+CMD ["python","test.py"]
