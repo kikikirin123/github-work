@@ -1,0 +1,37 @@
+# ログファイル
+*.log
+logs/
+npm-debug.log*
+
+# 一時ファイルやキャッシュ
+*.tmp
+*.temp
+*.swp
+*.bak
+.cache/
+.tmp/
+.DS_Store
+
+# 依存パッケージ
+node_modules/
+vendor/
+
+# 環境依存ファイル
+.env
+.env.* 
+
+# 個人設定ファイル
+*.sublime-project
+*.sublime-workspace
+.idea/
+.vscode/
+*.iml
+
+# バージョン管理関連
+.git/
+.gitignore
+
+# 開発関連ドキュメント
+*.md
+docs/
+README*

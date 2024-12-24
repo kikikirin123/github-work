@@ -1,0 +1,16 @@
+# stage1:build
+FROM node:20 AS build
+WORKDIR /app
+COPY package*.json /app
+RUN npm ci
+COPY . /app
+RUN npm run build
+
+# stage2:create image
+# stage1でビルドしたイメージから、必要なファイル群（node.jsインストールのための情報＋dict配下のjsコード）のみをコピー
+FROM node:20
+WORKDIR /app
+COPY --from=build /app/package*.json /app
+RUN npm ci
+COPY --from=build /app/dist /app/dist
+CMD ["npm","start"]
